@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STEM F · Project Hub</title>
+  <meta name="description" content="Academic project hub for STEM F SY 26-28 — University of Nueva Caceres" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0c0e12;
+      --bg-card: #151820;
+      --bg-hover: #1c2029;
+      --border: #2a2f3a;
+      --border-hover: #3d4555;
+      --text: #eef0f3;
+      --text-soft: #8b929e;
+      --orange: #ff7a1a;
+      --orange-soft: #ff9a4d;
+      --orange-dim: rgba(255, 122, 26, 0.12);
+      --orange-glow: rgba(255, 122, 26, 0.28);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(255, 122, 26, 0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 5rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+      background: var(--orange-dim);
+      border: 1px solid rgba(255, 122, 26, 0.25);
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.1rem;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.9rem, 5vw, 2.6rem);
+      letter-spacing: -0.035em;
+      margin-bottom: 0.6rem;
+      line-height: 1.15;
+    }
+
+    h1 span {
+      color: var(--orange);
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      max-width: 520px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1.1rem;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .meta span {
+      opacity: 0.9;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: 560px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .card {
+      display: block;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.4rem 1.3rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.22s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--orange);
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+
+    .card:hover {
+      background: var(--bg-hover);
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-icon {
+      font-size: 1.45rem;
+      margin-bottom: 0.7rem;
+      line-height: 1;
+    }
+
+    .card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 1.08rem;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+    }
+
+    .card-desc {
+      font-size: 0.875rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+      margin-bottom: 0.95rem;
+    }
+
+    .card-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #555;
+    }
+
+    .status-dot.live {
+      background: #22c55e;
+      box-shadow: 0 0 6px rgba(34, 197, 94, 0.5);
+    }
+
+    .status-dot.soon {
+      background: #64748b;
+    }
+
+    .note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      padding: 1.15rem;
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    footer {
+      margin-top: 3.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #5c6370;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <div class="eyebrow">STEM F · SY 26–28</div>
+      <h1>Academic <span>Project Hub</span></h1>
+      <p class="subtitle">
+        Final outputs and websites from STEM F academic projects — University of Nueva Caceres
+      </p>
+      <div class="meta">
+        <span>University of Nueva Caceres</span>
+        <span>·</span>
+        <span>Senior High School</span>
+        <span>·</span>
+        <span>STEM F</span>
+      </div>
+    </header>
+
+    <div class="section-label">Project Websites</div>
+
+    <div class="grid">
+      <!-- Mabkom Campaign -->
+      <a class="card" href="https://stemf2026.github.io/mabkomcampaign" target="_blank" rel="noopener">
+        <div class="card-icon">📢</div>
+        <div class="card-title">Mabkom Campaign</div>
+        <div class="card-desc">
+          Final output website for <strong>Mabisang Komunikasyon 2</strong> — Advocacy Campaign (Group 1)
+        </div>
+        <div class="card-status">
+          <span class="status-dot live"></span>
+          Live
+        </div>
+      </a>
+
+      <!-- PinkSplash -->
+      <a class="card" href="https://stemf2026.github.io/genscipinksplash" target="_blank" rel="noopener">
+        <div class="card-icon">🧴</div>
+        <div class="card-title">PinkSplash</div>
+        <div class="card-desc">
+          Final output website for our chemical product — sustainable dishwashing liquid (Group 2 · GenSci)
+        </div>
+        <div class="card-status">
+          <span class="status-dot live"></span>
+          Live
+        </div>
+      </a>
+
+    </div>
+
+    <footer>
+      STEM F · University of Nueva Caceres · SY 26–28
+    </footer>
+  </div>
+</body>
+</html>
